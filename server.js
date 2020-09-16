@@ -2,17 +2,12 @@ const express = require("express");
 const server = express();
 const dotenv = require("dotenv").config();
 const port = process.env.PORT;
+const musculacaoController = require("./src/controllers/musculacao");
 
-server.get("/", (req, res) => {
-  res.send("welcome to the server");
-});
+//allow json response
+server.use(express.json());
 
-server.get("/cursos", (req, res) => {
-  res.json({
-    Web: "React.js",
-    Mobile: "React-Native",
-    ML: "Python",
-  });
-});
+server.use(require("./src/routes"));
+
 server.listen(port);
 console.log("listening on port " + port);
